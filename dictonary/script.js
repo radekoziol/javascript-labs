@@ -18,15 +18,29 @@ function addNewTranslation() {
 
     if (map[key] === undefined)
         map[key] = [];
-    map[key].push(val);
+    // Duplicates
+    if (map[key].toString().split(",")
+            .every(function (value) {
+                return value !== val
+            })){
+        if(val !== undefined)
+            map[key].push(val);
+    }
 }
 
 function printResults() {
     var output = "";
-
+    var c = 0;
     Object.keys(map).forEach(function (key) {
-        output += key + " - " + map[key] + "   translation number: "
-            + (countValues(map[key]) + 1) + "<br>"
+        c += map[key].toString().length;
+        if (c > 20){
+            output += key + " - " + map[key].toString().substring(0, 50) + "..   translation number: "
+                + (countValues(map[key]) + 1) + "<br>";
+            return void(0);
+        }
+        else
+            output += key + " - " + map[key] + "   translation number: "
+                + (countValues(map[key]) + 1) + "<br>";
     });
 
     document.getElementById("output").innerHTML = output;
@@ -37,28 +51,32 @@ function printChart() {
     var c = 1;
     Object.keys(map).forEach(function (key) {
 
-        for (var i = 0; i <= 15; i++) {
-            var can = document.getElementById("myCanvas");
+        for (var i = 0; i <= 25; i++) {
+            var can = document.getElementById("chart");
             var ctx = can.getContext("2d");
-            ctx.fillStyle = "black";
-            ctx.font="25px Arial";
-            ctx.fillText(i.toString(), (i+1) * 25, 25, 100);
+            ctx.fillStyle = "darkslategrey";
+            ctx.font = "10px Arial";
+            ctx.fillText(i.toString(), (i + 1) * 20, 15, 15);
         }
 
-        ctx.fillStyle = "black";
-        ctx.font="25px Arial";
-        ctx.fillText(key.toString(), 0 , (c+1)*25, 100);
 
         for (i = 1; i <= countValues(map[key]) + 1; i++) {
-            var can = document.getElementById("myCanvas");
-            var ctx = can.getContext("2d");
+            can = document.getElementById("chart");
+            ctx = can.getContext("2d");
             ctx.fillStyle = "lightseagreen";
-            ctx.fillRect(i * 25, c * 25, 25, 25);
+            ctx.fillRect(i * 20, c * 20, 25, 20);
 
         }
+
+        ctx.fillStyle = "darkslategrey";
+        ctx.font = "25px Arial";
+        if (key.toString().length > 25)
+            ctx.fillText(String(key).substring(0, 20) + "..", 20, (c + 1) * 20, 200);
+        else
+            ctx.fillText(key.toString(), 20, (c + 1) * 20, 200);
+
+
         c += 1;
-        output += key + " - " + map[key] + "   translation number: "
-            + (countValues(map[key]) + 1) + "<br>"
     });
 
 
