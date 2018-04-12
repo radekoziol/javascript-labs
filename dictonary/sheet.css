@@ -3,8 +3,25 @@ body{
     color: darkslategrey;
 }
 aside{
-    font-size: small;
+    font-size: medium;
 }
 p{
+    text-align: center;
     font-size: xx-large;
+}
+canvas{
+    float : left;
+    color: lightseagreen;
+    margin-top: 15px;
+    font-size: medium;
+}
+t1{
+    padding: 10px;
+    text-align: left;
+    float: left;
+    display: block;
+    width: 50%;
+
+    /*overflow: hidden; !* will contain if #first is longer than #second *!*/
+
 }

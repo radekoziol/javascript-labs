@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<script src = "script.js"></script>-->
-    <title>Title</title>
+    <script src = "script.js"></script>
 
     <style type="text/css">
         body {
@@ -38,6 +37,7 @@
 <body>
 
 <p>Dictionary</p>
+
 <aside>
     <h1>
         Type word/phase and translation
@@ -45,42 +45,19 @@
 </aside>
 
 <form onsubmit="myfunc()">
-
     <input type="text" id="vh">
     <input type="text" id="vh1"/>
-    <input type="button" value="Add" name="submit" onclick="addNewTranslation()"/>
+    <input type="button" value="Add" name="submit" onclick="update()"/>
 </form>
 
-<div id="output"></div>
+<div id="mainbody">
 
-<script>
+    <t1 id="output"></t1>
 
-    var map = {};
+    <canvas id="myCanvas"></canvas>
 
-    function countValues(val) {
-        return (String(val).match(/,/g)||[]).length;
-    }
+</div>
 
-    function addNewTranslation() {
-        var key = document.getElementById("vh").value;
-        var val = document.getElementById("vh1").value;
-
-        if(map[key] === undefined)
-            map[key] = [];
-        map[key].push(val);
-
-        var output = "";
-
-        Object.keys(map).forEach(function (key) {
-            output += key + " - " + map[key] + "   translation number: "
-                + (countValues(map[key]) + 1) + "<br>"
-        });
-
-        document.getElementById("output").innerHTML = output;
-    }
-
-
-</script>
 
 
 </body>
