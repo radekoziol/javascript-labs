@@ -6,12 +6,24 @@
     <title>Title</title>
 
     <style type="text/css">
-        body {font-size: 1.6em;}
-        .hidden {display:none;}
-        .show {display:inline !important;}
+        body {
+            font-size: 1.6em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: inline !important;
+        }
+
         button {
-            border: 2px solid black; background: #E5E4E2;
-            font-size: .5em; font-weight: bold; color: black;
+            border: 2px solid black;
+            background: #E5E4E2;
+            font-size: .5em;
+            font-weight: bold;
+            color: black;
             padding: .8em 2em;
             margin-top: .4em;
         }
@@ -35,8 +47,8 @@
 <form onsubmit="myfunc()">
 
     <input type="text" id="vh">
-    <input type="text" id="vh1" />
-    <input type="button" value="Add" name="submit" onclick="myfunc()"/>
+    <input type="text" id="vh1"/>
+    <input type="button" value="Add" name="submit" onclick="addNewTranslation()"/>
 </form>
 
 <div id="output"></div>
@@ -45,43 +57,31 @@
 
     var map = {};
 
-    function myfunc() {
+    function countValues(val) {
+        return (String(val).match(/,/g)||[]).length;
+    }
 
-        map[document.getElementById("vh").value] = document.getElementById("vh1").value;
+    function addNewTranslation() {
+        var key = document.getElementById("vh").value;
+        var val = document.getElementById("vh1").value;
+
+        if(map[key] === undefined)
+            map[key] = [];
+        map[key].push(val);
 
         var output = "";
 
-        Object.keys(map).forEach(function(key) {
-            output += key + " - " +  map[key] + "<br>"
+        Object.keys(map).forEach(function (key) {
+            output += key + " - " + map[key] + "   translation number: "
+                + (countValues(map[key]) + 1) + "<br>"
         });
 
         document.getElementById("output").innerHTML = output;
-
     }
 
-    </script>
 
-<!--<form id="b" onsubmit="printInput()" >-->
-    <!--<input type="text" id="input1" name="text1">-->
-    <!--<input type="text" id="input2" name="text2">-->
-    <!--<input type="submit" name="submit" value="Add">-->
+</script>
 
-<!--</form>-->
-
-
-<!--<script>-->
-
-    <!--function printInput(){-->
-        <!--var word = document.getElementById('input1').value;-->
-        <!--var translation = document.getElementById('input2').value;-->
-
-        <!--document.write(word, "<br/>");-->
-
-    <!--}-->
-
-
-
-<!--</script>-->
 
 </body>
 </html>
