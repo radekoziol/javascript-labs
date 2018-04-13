@@ -1,0 +1,3 @@
+# dictonary
+
+![Screenshot](screenshot.png)
