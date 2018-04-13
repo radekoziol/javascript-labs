@@ -2,18 +2,29 @@ body{
     background-color: whitesmoke;
     color: darkslategrey;
 }
+h1{
+
+    float: left;
+}
+form{
+    padding-top: 70px;
+}
+h2{
+    float: right;
+    width: 40%;
+}
 aside{
     font-size: medium;
 }
 p{
-    text-align: center;
+    text-align: left;
     font-size: xx-large;
 }
 canvas{
     display: block;
 
     float : left;
-    width: 40%;
+    width: 30%;
     color: lightseagreen;
     font-size: medium;
 

@@ -51,6 +51,7 @@ function printChart() {
     var c = 1;
     Object.keys(map).forEach(function (key) {
 
+
         for (var i = 0; i <= 25; i++) {
             var can = document.getElementById("chart");
             var ctx = can.getContext("2d");
@@ -65,16 +66,20 @@ function printChart() {
             ctx = can.getContext("2d");
             ctx.fillStyle = "lightseagreen";
             ctx.fillRect(i * 20, c * 20, 25, 20);
-
+            if(i >= 10){
+                ctx.fillStyle = "darkslategrey";
+                ctx.font = "12px Arial";
+                ctx.fillText(">10", (i + 1) * 20 - 10, c*20 + 10, 20);
+                break;
+            }
         }
 
         ctx.fillStyle = "darkslategrey";
-        ctx.font = "25px Arial";
+        ctx.font = "15px Arial";
         if (key.toString().length > 25)
             ctx.fillText(String(key).substring(0, 20) + "..", 20, (c + 1) * 20, 200);
         else
             ctx.fillText(key.toString(), 20, (c + 1) * 20, 200);
-
 
         c += 1;
     });
