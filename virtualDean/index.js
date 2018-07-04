@@ -50,7 +50,7 @@ app.put('/api/students/grades/:id', function (req, res) {
 });
 
 
-app.put('/api/students/:id/', function (req, res) {
+app.put('/api/students/:id', function (req, res) {
 
     const student = students.find(function(s){
         return s.id === parseInt(req.params.id);
